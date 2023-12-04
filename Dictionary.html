@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Conlang Dictionary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .entry {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Your Conlang Dictionary</h1>
+
+    <input type="text" id="searchInput" placeholder="Search...">
+
+    <div id="dictionary">
+        <!-- Entries will be dynamically added here using JavaScript -->
+    </div>
+
+    <script>
+        // Simulated data for demonstration
+        var dictionaryData = [
+            { word: 'Word1', definition: 'Definition1' },
+            { word: 'Word2', definition: 'Definition2' }
+            // Add more data as needed
+        ];
+
+        // Function to display entries
+        function displayEntries(entries) {
+            var dictionaryContainer = document.getElementById('dictionary');
+            dictionaryContainer.innerHTML = '';
+
+            entries.forEach(function(entry) {
+                var entryDiv = document.createElement('div');
+                entryDiv.classList.add('entry');
+
+                var wordHeading = document.createElement('h2');
+                wordHeading.innerText = entry.word;
+
+                var definitionParagraph = document.createElement('p');
+                definitionParagraph.innerText = entry.definition;
+
+                entryDiv.appendChild(wordHeading);
+                entryDiv.appendChild(definitionParagraph);
+                dictionaryContainer.appendChild(entryDiv);
+            });
+        }
+
+        // Initial display
+        displayEntries(dictionaryData);
+
+        // JavaScript for search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            var searchValue = this.value.toLowerCase();
+            var filteredEntries = dictionaryData.filter(function(entry) {
+                return entry.word.toLowerCase().includes(searchValue) || entry.definition.toLowerCase().includes(searchValue);
+            });
+
+            displayEntries(filteredEntries);
+        });
+    </script>
+
+</body>
+</html>
